@@ -1,5 +1,6 @@
-package com.springboot.redis;
+package com.springboot.redis.repo;
 
+import com.springboot.redis.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
