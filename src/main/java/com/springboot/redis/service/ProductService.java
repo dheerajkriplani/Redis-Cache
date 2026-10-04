@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,7 +48,10 @@ public class ProductService {
     }
 
 
-    @CacheEvict(value = "products", key = "#id")//to delete the cache entry for the product with the given id after deleting it from the database
+    @Caching(evict = {
+            @CacheEvict(value = "products", key = "#id"),
+            @CacheEvict(value = "products", key = "'allProducts'")
+    })//to delete the cache entry for the product with the given id after deleting it from the database
     public String deleteProduct(Long id) {
         productRepository.deleteById(id);
         return "Product deleted successfully";
