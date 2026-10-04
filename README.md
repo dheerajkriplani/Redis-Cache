@@ -54,4 +54,5 @@ set key value    # store a value
 get key          # read a value
 del key          # delete a key
 keys *           # list all keys
+flushdb          # delete all keys
 ```

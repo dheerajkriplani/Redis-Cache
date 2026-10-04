@@ -48,10 +48,7 @@ public class ProductService {
     }
 
 
-    @Caching(evict = {
-            @CacheEvict(value = "products", key = "#id"),
-            @CacheEvict(value = "products", key = "'allProducts'")
-    })//to delete the cache entry for the product with the given id after deleting it from the database
+    @Caching(evict = {@CacheEvict(value = "products", key = "#id"), @CacheEvict(value = "products", key = "'allProducts'")})//to delete the cache entry for the product with the given id after deleting it from the database
     public String deleteProduct(Long id) {
         productRepository.deleteById(id);
         return "Product deleted successfully";
